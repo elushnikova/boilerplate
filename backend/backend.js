@@ -1,4 +1,5 @@
 const express = require('express');
+const { sequelize } = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -20,5 +21,8 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   /* eslint-disable no-console */
   console.log(`Backend server listens to ${PORT}`);
+  sequelize.authenticate()
+    .then(() => console.log('DB connection successful'))
+    .catch((error) => console.log('DB connection failed', error));
   /* eslint-enable no-console */
 });
