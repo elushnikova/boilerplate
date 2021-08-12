@@ -1,17 +1,65 @@
 const express = require('express');
-const { sequelize } = require('./models');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+const { sequelize, User } = require('./models');
+
+const PORT = process.env.PORT || 4000;
+const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
+const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const sessionConfig = {
+  store: new FileStore(),
+  name: 'user_sid',
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+};
 
 app.use(express.json());
+app.use(session(sessionConfig));
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello, world' });
 });
 
 app.post('/register', (req, res) => {
-  res.json(req.body);
+  const { email, password } = req.body;
+
+  if (!email) {
+    res
+      .status(409)
+      .json({ message: 'Email must be non-empty', email });
+  }
+
+  if (!password) {
+    res
+      .status(409)
+      .json({ message: 'Password must be non-empty', password });
+    return;
+  }
+
+  bcrypt.hash(password, SALT_ROUNDS)
+    .then((hash) => User.create({ email, password: hash }))
+    .then((user) => ({ id: user.id, email: user.email }))
+    .then((profile) => {
+      req.session.profile = profile;
+      res.json({ ok: true, profile });
+    })
+    .catch((error) => {
+      switch (error.name) {
+        case 'SequelizeUniqueConstraintError':
+          return res
+            .status(409)
+            .json({ ok: false, message: 'Email already registered', email: error.fields.email });
+
+        default:
+          return res
+            .status(500)
+            .json(error);
+      }
+    });
 });
 
 app.get('*', (req, res) => {
