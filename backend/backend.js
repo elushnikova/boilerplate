@@ -6,9 +6,7 @@ const morgan = require('morgan');
 
 const { sequelize, User } = require('./models');
 const checkAuthFields = require('./middleware/checkAuthFields');
-const prepareUserData = require('./helpers/prepareUserData');
-const createUser = require('./helpers/createUser');
-const prepareUserProfile = require('./helpers/prepareUserProfile');
+const register = require('./controllers/register');
 
 const PORT = process.env.PORT || 4000;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
@@ -31,28 +29,7 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hello, world' });
 });
 
-app.post('/register', checkAuthFields, (req, res) => {
-  prepareUserData(req.body.email, req.body.password)
-    .then(createUser)
-    .then(prepareUserProfile)
-    .then((profile) => {
-      req.session.profile = profile;
-      res.status(201).json({ ok: true, profile });
-    })
-    .catch((error) => {
-      switch (error.name) {
-        case 'SequelizeUniqueConstraintError':
-          return res
-            .status(409)
-            .json({ ok: false, message: 'Email already registered', email: error.fields.email });
-
-        default:
-          return res
-            .status(500)
-            .json(error);
-      }
-    });
-});
+app.post('/register', checkAuthFields, register);
 
 app.get('/logout', (req, res) => {
   req.session.destroy();
