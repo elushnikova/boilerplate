@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      default: false,
+    },
   }, {
     sequelize,
     modelName: 'User',
