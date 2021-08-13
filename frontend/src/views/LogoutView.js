@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import ViewContainer from '../components/ViewContainer';
+import ViewTitle from '../components/ViewTitle';
 
 function LogoutView() {
   const dispatch = useDispatch();
@@ -15,7 +17,9 @@ function LogoutView() {
   });
 
   return (
-    <div>Logout...</div>
+    <ViewContainer>
+      <ViewTitle>Logout</ViewTitle>
+    </ViewContainer>
   );
 }
 

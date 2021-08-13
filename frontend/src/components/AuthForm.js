@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function FormRegister({ path, children }) {
   const dispatch = useDispatch();
@@ -23,11 +25,19 @@ function FormRegister({ path, children }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="email" name="email" required />
-      <input type="password" name="password" required />
-      <button type="submit">{children}</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+        <Form.Label>Email</Form.Label>
+        <Form.Control type="email" name="email" required />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" name="password" required />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">{children}</Button>
+    </Form>
   );
 }
 

@@ -1,6 +1,11 @@
+import ViewContainer from '../components/ViewContainer';
+import ViewTitle from '../components/ViewTitle';
+
 function HomeView() {
   return (
-    <div>Home</div>
+    <ViewContainer>
+      <ViewTitle>Home</ViewTitle>
+    </ViewContainer>
   );
 }
 

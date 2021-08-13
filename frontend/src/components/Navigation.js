@@ -1,26 +1,41 @@
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import { LinkContainer } from 'react-router-bootstrap/';
 
 function Navigation() {
   const profile = useSelector((state) => state.profile);
 
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
+    <Navbar bg="light">
+      <Container>
+        <Nav className="w-100">
+          <LinkContainer to="/">
+            <Nav.Link>Home</Nav.Link>
+          </LinkContainer>
+
         {profile
-          ? (<li><Link to="/logout">Logout</Link></li>)
+          ? (
+            <LinkContainer to="/logout" className="ms-auto">
+              <Nav.Link>Logout</Nav.Link>
+            </LinkContainer>
+          )
           : (
             <>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/register">Register</Link></li>
+              <LinkContainer to="/login" className="ms-auto">
+                <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
+
+              <LinkContainer to="/register">
+                <Nav.Link>Register</Nav.Link>
+              </LinkContainer>
             </>
           )
         }
-      </ul>
-    </nav>
+        </Nav>
+      </Container>
+    </Navbar>
   );
 }
 

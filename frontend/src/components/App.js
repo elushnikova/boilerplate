@@ -7,31 +7,31 @@ import LogoutView from '../views/LogoutView';
 import Navigation from './Navigation';
 import store from '../redux/store';
 import ProtectedRoute from './ProtectedRoute';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <Navigation />
+        <Router>
+          <Navigation />
+          <Switch>
+            <Route path="/register">
+              <RegisterView />
+            </Route>
 
-        <Switch>
-          <Route path="/register">
-            <RegisterView />
-          </Route>
+            <Route path="/login">
+              <LoginView />
+            </Route>
 
-          <Route path="/login">
-            <LoginView />
-          </Route>
+            <Route path="/logout">
+              <LogoutView />
+            </Route>
 
-          <Route path="/logout">
-            <LogoutView />
-          </Route>
-
-          <ProtectedRoute path="/">
-            <HomeView />
-          </ProtectedRoute>
-        </Switch>
-      </Router>
+            <ProtectedRoute path="/">
+              <HomeView />
+            </ProtectedRoute>
+          </Switch>
+        </Router>
     </Provider>
   );
 }

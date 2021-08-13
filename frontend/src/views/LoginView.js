@@ -1,8 +1,19 @@
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ViewContainer from '../components/ViewContainer';
+import ViewTitle from '../components/ViewTitle';
 import AuthForm from '../components/AuthForm';
 
 function LoginView() {
   return (
-    <AuthForm path="/session">Login</AuthForm>
+    <ViewContainer>
+      <Row>
+        <Col md={6}>
+          <ViewTitle>Login</ViewTitle>
+          <AuthForm path="/session">Login</AuthForm>
+        </Col>
+      </Row>
+    </ViewContainer>
   );
 }
 
