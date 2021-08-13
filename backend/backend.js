@@ -7,9 +7,7 @@ const { sequelize } = require('./models');
 const checkAuthFields = require('./middleware/checkAuthFields');
 const register = require('./controllers/register');
 const logout = require('./controllers/logout');
-const compareUser = require('./helpers/compareUser');
-const prepareLoginData = require('./helpers/prepareLoginData');
-const prepareUserProfile = require('./helpers/prepareUserProfile');
+const login = require('./controllers/login');
 
 const PORT = process.env.PORT || 4000;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
@@ -34,19 +32,7 @@ app.get('/', (req, res) => {
 
 app.post('/register', checkAuthFields, register);
 app.get('/logout', logout);
-
-app.post('/login', checkAuthFields, (req, res) => {
-  prepareLoginData(req.body.email, req.body.password)
-    .then(compareUser)
-    .then(([user, isMatch]) => (
-      isMatch
-        ? res.json({ ok: true, profile: prepareUserProfile(user) })
-        : res.status(401).json({ ok: false, message: 'Invalid email or password' })
-    ))
-    .catch(() => {
-      res.status(401).json({ ok: false, message: 'Invalid email or password' });
-    });
-});
+app.post('/login', checkAuthFields, login);
 
 app.get('*', (req, res) => {
   res.redirect('/');
