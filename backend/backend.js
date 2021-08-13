@@ -31,8 +31,10 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', checkAuthFields, register);
-app.delete('/session', logout);
-app.post('/login', checkAuthFields, login);
+app
+  .route('/session')
+  .post(checkAuthFields, login)
+  .delete(logout);
 
 app.get('*', (req, res) => {
   res.redirect('/');
