@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const morgan = require('morgan');
+
 const { sequelize, User } = require('./models');
+const checkAuthFields = require('./middleware/checkAuthFields');
 
 const PORT = process.env.PORT || 4000;
 const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
@@ -27,21 +29,8 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hello, world' });
 });
 
-app.post('/register', (req, res) => {
+app.post('/register', checkAuthFields, (req, res) => {
   const { email, password } = req.body;
-
-  if (!email) {
-    res
-      .status(409)
-      .json({ message: 'Email must be non-empty', email });
-  }
-
-  if (!password) {
-    res
-      .status(409)
-      .json({ message: 'Password must be non-empty', password });
-    return;
-  }
 
   bcrypt.hash(password, SALT_ROUNDS)
     .then((hash) => User.create({ email, password: hash }))
@@ -72,21 +61,8 @@ app.get('/logout', (req, res) => {
     .json({ ok: true });
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', checkAuthFields, (req, res) => {
   const { email, password } = req.body;
-
-  if (!email) {
-    res
-      .status(409)
-      .json({ message: 'Email must be non-empty', email });
-  }
-
-  if (!password) {
-    res
-      .status(409)
-      .json({ message: 'Password must be non-empty', password });
-    return;
-  }
 
   User.findOne({ where: { email } })
     .then((user) => {
