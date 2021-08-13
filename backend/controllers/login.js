@@ -17,10 +17,14 @@ function login(req, res) {
     .then(prepareUserProfile)
     .then((profile) => {
       req.session.profile = profile;
-      res.json({ ok: true, profile });
+
+      return res
+        .json({ ok: true, profile });
     })
     .catch(() => {
-      res.status(401).json({ ok: false, message: 'Invalid email or password' });
+      res
+        .status(401)
+        .json({ ok: false, message: 'Invalid email or password' });
     });
 }
 

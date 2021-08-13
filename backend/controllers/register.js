@@ -8,7 +8,10 @@ function register(req, res) {
     .then(prepareUserProfile)
     .then((profile) => {
       req.session.profile = profile;
-      res.status(201).json({ ok: true, profile });
+
+      return res
+        .status(201)
+        .json({ ok: true, profile });
     })
     .catch((error) => {
       switch (error.name) {
