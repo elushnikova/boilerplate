@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-function FormRegister({ path }) {
+function FormRegister({ path, children }) {
   const dispatch = useDispatch();
 
   function handleSubmit(event) {
@@ -23,7 +23,7 @@ function FormRegister({ path }) {
     <form onSubmit={handleSubmit}>
       <input type="email" name="email" required />
       <input type="password" name="password" required />
-      <button type="submit">Register</button>
+      <button type="submit">{children}</button>
     </form>
   );
 }

@@ -2,7 +2,7 @@ import AuthForm from '../components/AuthForm';
 
 function RegisterView() {
   return (
-    <AuthForm path="/register" />
+    <AuthForm path="/register">Register</AuthForm>
   );
 }
 

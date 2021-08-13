@@ -2,7 +2,7 @@ import AuthForm from '../components/AuthForm';
 
 function LoginView() {
   return (
-    <AuthForm path="/login" />
+    <AuthForm path="/login">Login</AuthForm>
   );
 }
 
