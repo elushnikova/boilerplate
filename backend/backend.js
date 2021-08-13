@@ -46,7 +46,7 @@ app.post('/register', (req, res) => {
     .then((user) => ({ id: user.id, email: user.email }))
     .then((profile) => {
       req.session.profile = profile;
-      res.json({ ok: true, profile });
+      res.status(201).json({ ok: true, profile });
     })
     .catch((error) => {
       switch (error.name) {
