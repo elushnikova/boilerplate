@@ -1,13 +1,15 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const morgan = require('morgan');
 
-const { sequelize, User } = require('./models');
+const { sequelize } = require('./models');
 const checkAuthFields = require('./middleware/checkAuthFields');
 const register = require('./controllers/register');
 const logout = require('./controllers/logout');
+const compareUser = require('./helpers/compareUser');
+const prepareLoginData = require('./helpers/prepareLoginData');
+const prepareUserProfile = require('./helpers/prepareUserProfile');
 
 const PORT = process.env.PORT || 4000;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
@@ -34,20 +36,11 @@ app.post('/register', checkAuthFields, register);
 app.get('/logout', logout);
 
 app.post('/login', checkAuthFields, (req, res) => {
-  const { email, password } = req.body;
-
-  User.findOne({ where: { email } })
-    .then((user) => {
-      if (!user) throw new Error('User not found');
-
-      return Promise.all([
-        Promise.resolve(user),
-        bcrypt.compare(password, user.password),
-      ]);
-    })
+  prepareLoginData(req.body.email, req.body.password)
+    .then(compareUser)
     .then(([user, isMatch]) => (
       isMatch
-        ? res.json({ ok: true, profile: { id: user.id, email: user.email } })
+        ? res.json({ ok: true, profile: prepareUserProfile(user) })
         : res.status(401).json({ ok: false, message: 'Invalid email or password' })
     ))
     .catch(() => {
