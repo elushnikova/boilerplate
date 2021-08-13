@@ -21,8 +21,8 @@ function FormRegister({ path }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="email" name="email" />
-      <input type="password" name="password" />
+      <input type="email" name="email" required />
+      <input type="password" name="password" required />
       <button type="submit">Register</button>
     </form>
   );
