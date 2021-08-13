@@ -6,9 +6,11 @@ const morgan = require('morgan');
 
 const { sequelize, User } = require('./models');
 const checkAuthFields = require('./middleware/checkAuthFields');
+const prepareUserData = require('./helpers/prepareUserData');
+const createUser = require('./helpers/createUser');
+const prepareUserProfile = require('./helpers/prepareUserProfile');
 
 const PORT = process.env.PORT || 4000;
-const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
 const SESSION_COOKIE = 'user_sid';
 
@@ -30,11 +32,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', checkAuthFields, (req, res) => {
-  const { email, password } = req.body;
-
-  bcrypt.hash(password, SALT_ROUNDS)
-    .then((hash) => User.create({ email, password: hash }))
-    .then((user) => ({ id: user.id, email: user.email }))
+  prepareUserData(req.body.email, req.body.password)
+    .then(createUser)
+    .then(prepareUserProfile)
     .then((profile) => {
       req.session.profile = profile;
       res.status(201).json({ ok: true, profile });
