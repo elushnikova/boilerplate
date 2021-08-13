@@ -1,8 +1,8 @@
-import FormRegister from '../components/FormRegister';
+import AuthForm from '../components/AuthForm';
 
 function RegisterView() {
   return (
-    <FormRegister />
+    <AuthForm path="/register" />
   );
 }
 

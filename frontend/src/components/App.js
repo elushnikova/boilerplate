@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import HomeView from '../views/HomeView';
 import RegisterView from '../views/RegisterView';
+import LoginView from '../views/LoginView';
 import LogoutView from '../views/LogoutView';
 import Navigation from './Navigation';
 import store from '../redux/store';
@@ -15,6 +16,10 @@ function App() {
         <Switch>
           <Route path="/register">
             <RegisterView />
+          </Route>
+
+          <Route path="/login">
+            <LoginView />
           </Route>
 
           <Route path="/logout">

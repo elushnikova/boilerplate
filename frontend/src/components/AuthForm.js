@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 
-function FormRegister() {
+function FormRegister({ path }) {
   const dispatch = useDispatch();
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    fetch('/register', {
+    fetch(path, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

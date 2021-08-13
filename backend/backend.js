@@ -72,6 +72,41 @@ app.get('/logout', (req, res) => {
     .json({ ok: true });
 });
 
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email) {
+    res
+      .status(409)
+      .json({ message: 'Email must be non-empty', email });
+  }
+
+  if (!password) {
+    res
+      .status(409)
+      .json({ message: 'Password must be non-empty', password });
+    return;
+  }
+
+  User.findOne({ where: { email } })
+    .then((user) => {
+      if (!user) throw new Error('User not found');
+
+      return Promise.all([
+        Promise.resolve(user),
+        bcrypt.compare(password, user.password),
+      ]);
+    })
+    .then(([user, isMatch]) => (
+      isMatch
+        ? res.json({ ok: true, profile: { id: user.id, email: user.email } })
+        : res.status(401).json({ ok: false, message: 'Invalid email or password' })
+    ))
+    .catch(() => {
+      res.status(401).json({ ok: false, message: 'Invalid email or password' });
+    });
+});
+
 app.get('*', (req, res) => {
   res.redirect('/');
 });
