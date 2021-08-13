@@ -7,10 +7,11 @@ const morgan = require('morgan');
 const { sequelize, User } = require('./models');
 const checkAuthFields = require('./middleware/checkAuthFields');
 const register = require('./controllers/register');
+const logout = require('./controllers/logout');
 
 const PORT = process.env.PORT || 4000;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
-const SESSION_COOKIE = 'user_sid';
+const SESSION_COOKIE = process.env.SESSION_COOKIE || 'user_sid';
 
 const app = express();
 const sessionConfig = {
@@ -30,13 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', checkAuthFields, register);
-
-app.get('/logout', (req, res) => {
-  req.session.destroy();
-  res
-    .clearCookie(SESSION_COOKIE)
-    .json({ ok: true });
-});
+app.get('/logout', logout);
 
 app.post('/login', checkAuthFields, (req, res) => {
   const { email, password } = req.body;
