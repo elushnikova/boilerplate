@@ -7,7 +7,7 @@ function LogoutView() {
   const history = useHistory();
 
   useEffect(() => {
-    fetch('/logout')
+    fetch('/session', { method: 'DELETE' })
       .then((response) => response.json())
       .then((data) => data.ok && dispatch({ type: 'REMOVE_PROFILE' }))
       .then(() => history.push('/'))

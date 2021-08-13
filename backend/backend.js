@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/register', checkAuthFields, register);
-app.get('/logout', logout);
+app.delete('/session', logout);
 app.post('/login', checkAuthFields, login);
 
 app.get('*', (req, res) => {
