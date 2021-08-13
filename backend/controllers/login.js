@@ -7,11 +7,15 @@ function login(req, res) {
     .then(compareUser)
     .then(([user, isMatch]) => {
       if (!isMatch) {
-        res.status(401).json({ ok: false, message: 'Invalid email or password' });
-        return;
+        return res
+          .status(401)
+          .json({ ok: false, message: 'Invalid email or password' });
       }
 
-      const profile = prepareUserProfile(user);
+      return user;
+    })
+    .then(prepareUserProfile)
+    .then((profile) => {
       req.session.profile = profile;
       res.json({ ok: true, profile });
     })
