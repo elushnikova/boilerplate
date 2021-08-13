@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const morgan = require('morgan');
 const { sequelize, User } = require('./models');
 
 const PORT = process.env.PORT || 4000;
@@ -18,6 +19,7 @@ const sessionConfig = {
   saveUninitialized: false,
 };
 
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(session(sessionConfig));
 
