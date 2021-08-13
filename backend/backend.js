@@ -7,11 +7,12 @@ const { sequelize, User } = require('./models');
 const PORT = process.env.PORT || 4000;
 const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
+const SESSION_COOKIE = 'user_sid';
 
 const app = express();
 const sessionConfig = {
   store: new FileStore(),
-  name: 'user_sid',
+  name: SESSION_COOKIE,
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -60,6 +61,13 @@ app.post('/register', (req, res) => {
             .json(error);
       }
     });
+});
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res
+    .clearCookie(SESSION_COOKIE)
+    .json({ ok: true });
 });
 
 app.get('*', (req, res) => {
