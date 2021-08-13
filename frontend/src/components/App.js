@@ -6,6 +6,7 @@ import LoginView from '../views/LoginView';
 import LogoutView from '../views/LogoutView';
 import Navigation from './Navigation';
 import store from '../redux/store';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
@@ -26,9 +27,9 @@ function App() {
             <LogoutView />
           </Route>
 
-          <Route path="/">
+          <ProtectedRoute path="/">
             <HomeView />
-          </Route>
+          </ProtectedRoute>
         </Switch>
       </Router>
     </Provider>
