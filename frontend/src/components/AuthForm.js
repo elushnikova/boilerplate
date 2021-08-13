@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function FormRegister({ path, children }) {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -16,6 +18,7 @@ function FormRegister({ path, children }) {
     })
       .then((response) => response.json())
       .then((data) => data.ok && dispatch({ type: 'SET_PROFILE', payload: data.profile }))
+      .then(() => history.push('/'))
       .catch(console.log);
   }
 
