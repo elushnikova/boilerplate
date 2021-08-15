@@ -5,7 +5,7 @@ const { User } = require('../models');
  * @returns {Promise<object>} Promise resolving with `user` object from DB
  */
 function createUser([email, password]) {
-  return User.create({ email, password });
+  return User.create({ email, password, isAdmin: false });
 }
 
 module.exports = createUser;
