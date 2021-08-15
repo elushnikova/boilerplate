@@ -10,6 +10,7 @@ const register = require('./controllers/register');
 const logout = require('./controllers/logout');
 const login = require('./controllers/login');
 const handleNotFound = require('./controllers/handleNotFound');
+const handleHome = require('./controllers/handleHome');
 
 const PORT = process.env.PORT || 4000;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
@@ -34,22 +35,15 @@ app.use(cors(corsConfig));
 app.use(session(sessionConfig));
 
 app.route('/api')
-  .get((req, res) => {
-    if (!req.session.profile) {
-      return res
-        .status(401)
-        .json({ ok: false, message: 'Please, authenticate' });
-    }
-
-    return res.json({ ok: true, message: 'Hello, world' });
-  })
+  .get(handleHome)
   .post(checkAuthFields, register);
 
-app
-  .route('/api/session')
+app.route('/api/session')
   .post(checkAuthFields, login)
   .delete(logout);
-app.get('*', handleNotFound);
+
+app.route('*')
+  .get(handleNotFound);
 
 app.listen(PORT, () => {
   /* eslint-disable no-console */
