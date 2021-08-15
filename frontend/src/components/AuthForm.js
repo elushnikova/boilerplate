@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function FormRegister({ path, children }) {
+function AuthForm({ path, children }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -41,4 +41,4 @@ function FormRegister({ path, children }) {
   );
 }
 
-export default FormRegister;
+export default AuthForm;
