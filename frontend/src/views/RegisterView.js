@@ -10,7 +10,7 @@ function RegisterView() {
       <Row>
         <Col md={6}>
           <ViewTitle>Register</ViewTitle>
-          <AuthForm path="/register">Register</AuthForm>
+          <AuthForm>Register</AuthForm>
         </Col>
       </Row>
     </ViewContainer>

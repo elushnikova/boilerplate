@@ -7,7 +7,7 @@ function HomeView() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    fetchJson('/hello')
+    fetchJson()
       .then((data) => setMessage(data.message))
       .catch(console.log); // eslint-disable-line no-console
   }, []);

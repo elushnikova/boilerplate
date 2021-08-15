@@ -33,19 +33,20 @@ app.use(express.json());
 app.use(cors(corsConfig));
 app.use(session(sessionConfig));
 
-app.get('/hello', (req, res) => {
-  if (!req.session.profile) {
-    return res
-      .status(401)
-      .json({ ok: false, message: 'Please, authenticate' });
-  }
+app.route('/api')
+  .get((req, res) => {
+    if (!req.session.profile) {
+      return res
+        .status(401)
+        .json({ ok: false, message: 'Please, authenticate' });
+    }
 
-  return res.json({ ok: true, message: 'Hello, world' });
-});
+    return res.json({ ok: true, message: 'Hello, world' });
+  })
+  .post(checkAuthFields, register);
 
-app.post('/register', checkAuthFields, register);
 app
-  .route('/session')
+  .route('/api/session')
   .post(checkAuthFields, login)
   .delete(logout);
 app.get('*', handleNotFound);

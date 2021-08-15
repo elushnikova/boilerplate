@@ -1,5 +1,5 @@
-function fetchJson(path, options) {
-  const baseUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:4000';
+function fetchJson(path = '', options) {
+  const baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:4000/api';
 
   return fetch(baseUrl + path,
     {

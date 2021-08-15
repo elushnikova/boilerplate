@@ -1,5 +1,5 @@
 function handleNotFound(_, res) {
-  res.redirect('/');
+  res.redirect('/api');
 }
 
 module.exports = handleNotFound;
