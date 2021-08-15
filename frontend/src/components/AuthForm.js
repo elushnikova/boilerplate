@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import fetchJson from '../helpers/fetchJson';
 
 function AuthForm({ path, children }) {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ function AuthForm({ path, children }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    fetch(path, {
+    fetchJson(path, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -18,10 +19,9 @@ function AuthForm({ path, children }) {
         password: event.target.password.value,
       }),
     })
-      .then((response) => response.json())
       .then((data) => data.ok && dispatch({ type: 'SET_PROFILE', payload: data.profile }))
       .then(() => history.push('/'))
-      .catch(console.log);
+      .catch(console.log); // eslint-disable-line no-console
   }
 
   return (

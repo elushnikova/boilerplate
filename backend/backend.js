@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const cors = require('cors');
 const morgan = require('morgan');
 
 const { sequelize } = require('./models');
@@ -22,13 +23,24 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
 };
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cors(corsConfig));
 app.use(session(sessionConfig));
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Hello, world' });
+app.get('/hello', (req, res) => {
+  if (!req.session.profile) {
+    return res
+      .status(401)
+      .json({ ok: false, message: 'Please, authenticate' });
+  }
+
+  return res.json({ ok: true, message: 'Hello, world' });
 });
 
 app.post('/register', checkAuthFields, register);
