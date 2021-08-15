@@ -7,9 +7,7 @@ function login(req, res) {
     .then(compareUser)
     .then(([user, isMatch]) => {
       if (!isMatch) {
-        return res
-          .status(401)
-          .json({ ok: false, message: 'Invalid email or password' });
+        throw new Error('Invalid email or password');
       }
 
       return user;
