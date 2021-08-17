@@ -2,7 +2,7 @@ import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import throttle from 'lodash/throttle';
 import reducer from './reducer';
-import { loadState, saveState } from '../helpers/localStorage';
+import { loadState, saveState } from './localStorage';
 
 const persistedState = loadState();
 const store = createStore(reducer, persistedState, composeWithDevTools());

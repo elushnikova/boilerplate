@@ -5,7 +5,7 @@ import RegisterView from '../views/RegisterView';
 import LoginView from '../views/LoginView';
 import LogoutView from '../views/LogoutView';
 import Navigation from './Navigation';
-import store from '../redux/store';
+import store from '../helpers/store';
 import ProtectedRoute from './ProtectedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
