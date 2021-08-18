@@ -2,9 +2,9 @@
  * @returns {object | undefined} Either persisted state object from local storage
  * or `undefined` — so that reducers can initialize state on their own.
  */
-export function loadState() {
+export function loadState(key) {
   try {
-    const serializedState = localStorage.getItem('state');
+    const serializedState = localStorage.getItem(key);
     if (serializedState === null) {
       return undefined;
     }
@@ -15,10 +15,10 @@ export function loadState() {
   }
 }
 
-export function saveState(state) {
+export function saveState(key, state) {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem('state', serializedState);
+    localStorage.setItem(key, serializedState);
   } catch (error) {
     console.log(error); // eslint-disable-line no-console
   }

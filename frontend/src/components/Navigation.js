@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap/';
 
 function Navigation() {
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.profile.data);
 
   return (
     <Navbar bg="light">

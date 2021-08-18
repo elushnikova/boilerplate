@@ -1,20 +1,15 @@
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import throttle from 'lodash/throttle';
-import reducer from './reducer';
-import { loadState, saveState } from './localStorage';
+import rootReducer from '../reducers';
+import { saveState } from './localStorage';
 
-const persistedState = loadState();
-const store = createStore(reducer, persistedState, composeWithDevTools());
-
-function persistState() {
-  saveState({
-    profile: store.getState().profile,
-  });
-}
+const store = createStore(rootReducer, composeWithDevTools());
 
 store.subscribe(
-  throttle(persistState, 1000),
+  throttle(() => {
+    saveState('profile', store.getState().profile.data);
+  }, 1000),
 );
 
 export default store;

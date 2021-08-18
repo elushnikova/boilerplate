@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ViewContainer from '../components/ViewContainer';
 import ViewTitle from '../components/ViewTitle';
+import action from '../helpers/action';
 import fetchJson from '../helpers/fetchJson';
 
 function LogoutView() {
@@ -11,7 +12,7 @@ function LogoutView() {
 
   useEffect(() => {
     fetchJson('/session', { method: 'DELETE' })
-      .then((data) => data.ok && dispatch({ type: 'REMOVE_PROFILE' }))
+      .then((data) => data.ok && dispatch(action.clearProfileData()))
       .then(() => history.push('/'))
       .catch(console.log); // eslint-disable-line no-console
   });

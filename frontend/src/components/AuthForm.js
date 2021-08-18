@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import fetchJson from '../helpers/fetchJson';
+import action from '../helpers/action';
 
 function AuthForm({ path = '', children }) {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function AuthForm({ path = '', children }) {
         password: event.target.password.value,
       }),
     })
-      .then((data) => data.ok && dispatch({ type: 'SET_PROFILE', payload: data.profile }))
+      .then((data) => data.ok && dispatch(action.setProfileData(data.profile)))
       .then(() => history.push('/'))
       .catch(console.log); // eslint-disable-line no-console
   }
