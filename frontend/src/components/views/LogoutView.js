@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ViewContainer from '../components/ViewContainer';
-import ViewTitle from '../components/ViewTitle';
-import Action from '../helpers/Action';
-import fetchJson from '../helpers/fetchJson';
+import ViewContainer from '../presentational/ViewContainer';
+import ViewTitle from '../presentational/ViewTitle';
+import Action from '../../helpers/Action';
+import fetchJson from '../../helpers/fetchJson';
 
 function LogoutView() {
   const dispatch = useDispatch();

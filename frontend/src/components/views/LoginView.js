@@ -1,8 +1,8 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ViewContainer from '../components/ViewContainer';
-import ViewTitle from '../components/ViewTitle';
-import AuthForm from '../components/AuthForm';
+import ViewContainer from '../presentational/ViewContainer';
+import ViewTitle from '../presentational/ViewTitle';
+import AuthForm from '../AuthForm';
 
 function LoginView() {
   return (

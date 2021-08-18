@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import ViewContainer from '../components/ViewContainer';
-import ViewTitle from '../components/ViewTitle';
-import fetchJson from '../helpers/fetchJson';
+import ViewContainer from '../presentational/ViewContainer';
+import ViewTitle from '../presentational/ViewTitle';
+import fetchJson from '../../helpers/fetchJson';
 
 function HomeView() {
   const [message, setMessage] = useState('');

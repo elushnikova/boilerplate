@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import HomeView from '../views/HomeView';
-import RegisterView from '../views/RegisterView';
-import LoginView from '../views/LoginView';
-import LogoutView from '../views/LogoutView';
+import HomeView from './views/HomeView';
+import RegisterView from './views/RegisterView';
+import LoginView from './views/LoginView';
+import LogoutView from './views/LogoutView';
 import Navigation from './Navigation';
 import store from '../helpers/store';
-import ProtectedRoute from './ProtectedRoute';
-import UnauthenticatedRoute from './UnauthenticatedRoute';
+import ProtectedRoute from './routes/ProtectedRoute';
+import UnauthenticatedRoute from './routes/UnauthenticatedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
