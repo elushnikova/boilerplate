@@ -10,7 +10,7 @@ function LoginView() {
       <Row>
         <Col md={6}>
           <ViewTitle>Login</ViewTitle>
-          <AuthForm path="/session">Login</AuthForm>
+          <AuthForm>Login</AuthForm>
         </Col>
       </Row>
     </ViewContainer>

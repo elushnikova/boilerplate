@@ -1,28 +1,24 @@
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import fetchJson from '../helpers/fetchJson';
-import action from '../helpers/action';
+import Action from '../helpers/Action';
 
-function AuthForm({ path = '', children }) {
+function AuthForm({ isRegister = false, children }) {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    fetchJson(path, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: event.target.email.value,
-        password: event.target.password.value,
-      }),
-    })
-      .then((data) => data.ok && dispatch(action.setProfileData(data.profile)))
-      .then(() => history.push('/'))
-      .catch(console.log); // eslint-disable-line no-console
+    const payload = {
+      email: event.target.email.value,
+      password: event.target.password.value,
+    };
+
+    dispatch(
+      isRegister
+        ? Action.register(payload)
+        : Action.login(payload),
+    );
   }
 
   return (

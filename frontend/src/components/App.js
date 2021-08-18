@@ -7,6 +7,7 @@ import LogoutView from '../views/LogoutView';
 import Navigation from './Navigation';
 import store from '../helpers/store';
 import ProtectedRoute from './ProtectedRoute';
+import UnauthenticatedRoute from './UnauthenticatedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -15,13 +16,13 @@ function App() {
         <Router>
           <Navigation />
           <Switch>
-            <Route path="/register">
+            <UnauthenticatedRoute path="/register">
               <RegisterView />
-            </Route>
+            </UnauthenticatedRoute>
 
-            <Route path="/login">
+            <UnauthenticatedRoute path="/login">
               <LoginView />
-            </Route>
+            </UnauthenticatedRoute>
 
             <Route path="/logout">
               <LogoutView />
