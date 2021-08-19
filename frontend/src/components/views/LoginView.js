@@ -8,7 +8,7 @@ function LoginView() {
   return (
     <ViewContainer>
       <Row>
-        <Col md={6}>
+        <Col md={6} lg={4}>
           <ViewTitle>Login</ViewTitle>
           <AuthForm>Login</AuthForm>
         </Col>

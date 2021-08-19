@@ -8,7 +8,7 @@ function RegisterView() {
   return (
     <ViewContainer>
       <Row>
-        <Col md={6}>
+        <Col md={6} lg={4}>
           <ViewTitle>Register</ViewTitle>
           <AuthForm isRegister>Register</AuthForm>
         </Col>
