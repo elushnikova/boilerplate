@@ -12,7 +12,7 @@ describe('createAction', () => {
   });
 
   it('throws is provided type is not a string', () => {
-    expect(() => createAction(1))
+    expect(() => createAction(123))
       .toThrow('Must provide string as action type');
   });
 
