@@ -1,13 +1,15 @@
 import { call, put } from 'redux-saga/effects';
 import Action from '../classes/Action';
+import ActionType from '../classes/ActionType';
 import fetchJson from '../fetchJson';
 
-function* authenticate(...args) {
+function* authenticate(action) {
   yield put(Action.clearProfileError());
 
-  const action = args[args.length - 1];
-  const path = args.length > 1 ? args[0] : '';
   let data;
+  const path = action.type === ActionType.LOGIN
+    ? '/session'
+    : '';
 
   try {
     data = yield call(fetchJson, path, {

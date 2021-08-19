@@ -4,7 +4,7 @@ import ActionType from '../classes/ActionType';
 import logout from './logout';
 
 function* watchActions() {
-  yield takeEvery(ActionType.LOGIN, authenticate, '/session');
+  yield takeEvery(ActionType.LOGIN, authenticate);
   yield takeEvery(ActionType.REGISTER, authenticate);
   yield takeEvery(ActionType.LOGOUT, logout);
 }
