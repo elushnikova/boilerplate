@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import HomeView from './views/HomeView';
 import RegisterView from './views/RegisterView';
@@ -24,9 +24,9 @@ function App() {
               <LoginView />
             </UnauthenticatedRoute>
 
-            <Route path="/logout">
+            <ProtectedRoute path="/logout">
               <LogoutView />
-            </Route>
+            </ProtectedRoute>
 
             <ProtectedRoute path="/">
               <HomeView />
