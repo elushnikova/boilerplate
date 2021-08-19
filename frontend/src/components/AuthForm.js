@@ -13,7 +13,7 @@ function AuthForm({ isRegister = false, children }) {
     if (error) {
       dispatch(Action.clearProfileError());
     }
-  }, [dispatch]);
+  }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleSubmit(event) {
     event.preventDefault();
