@@ -1,7 +1,6 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
-import Action from './Action';
-import ActionType from './ActionType';
-import fetchJson from './fetchJson';
+import { call, put } from 'redux-saga/effects';
+import Action from '../classes/Action';
+import fetchJson from '../fetchJson';
 
 function* authenticate(...args) {
   yield put(Action.clearProfileError());
@@ -25,9 +24,4 @@ function* authenticate(...args) {
     : put(Action.setProfileError(new Error(data.message)));
 }
 
-function* watchActions() {
-  yield takeEvery(ActionType.LOGIN, authenticate, '/session');
-  yield takeEvery(ActionType.REGISTER, authenticate);
-}
-
-export default watchActions;
+export default authenticate;

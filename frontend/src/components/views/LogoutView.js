@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ViewContainer from '../presentational/ViewContainer';
 import ViewTitle from '../presentational/ViewTitle';
-import Action from '../../helpers/Action';
+import Action from '../../helpers/classes/Action';
 import fetchJson from '../../helpers/fetchJson';
 
 function LogoutView() {

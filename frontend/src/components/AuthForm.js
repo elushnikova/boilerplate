@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Action from '../helpers/Action';
+import Action from '../helpers/classes/Action';
 
 function AuthForm({ isRegister = false, children }) {
   const dispatch = useDispatch();
