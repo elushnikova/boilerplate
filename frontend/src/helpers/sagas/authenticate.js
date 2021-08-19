@@ -4,8 +4,6 @@ import ActionType from '../classes/ActionType';
 import fetchJson from '../fetchJson';
 
 function* authenticate(action) {
-  yield put(Action.clearProfileError());
-
   let data;
   const path = action.type === ActionType.LOGIN
     ? '/session'

@@ -1,10 +1,19 @@
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Alert from 'react-bootstrap/Alert';
 import Action from '../helpers/classes/Action';
 
 function AuthForm({ isRegister = false, children }) {
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.profile.error);
+
+  useEffect(() => {
+    if (error) {
+      dispatch(Action.clearProfileError());
+    }
+  }, [dispatch]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -33,7 +42,9 @@ function AuthForm({ isRegister = false, children }) {
         <Form.Control type="password" name="password" required />
       </Form.Group>
 
-      <Button variant="primary" type="submit">{children}</Button>
+      <Button variant="primary" type="submit" className="mb-3">{children}</Button>
+
+      {error && <Alert variant="warning">{error}</Alert>}
     </Form>
   );
 }
