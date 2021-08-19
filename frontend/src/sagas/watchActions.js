@@ -1,6 +1,6 @@
 import { takeEvery } from 'redux-saga/effects';
 import authenticate from './authenticate';
-import ActionType from '../classes/ActionType';
+import ActionType from '../helpers/classes/ActionType';
 import logout from './logout';
 import fetchHomeData from './fetchHomeData';
 

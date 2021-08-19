@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
-import Action from '../classes/Action';
-import fetchJson from '../fetchJson';
+import Action from '../helpers/classes/Action';
+import fetchJson from '../helpers/fetchJson';
 
 function* logout() {
   yield put(Action.clearProfileError());
