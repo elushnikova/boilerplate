@@ -1,21 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Alert from 'react-bootstrap/Alert';
 import ViewContainer from '../presentational/ViewContainer';
 import ViewTitle from '../presentational/ViewTitle';
-import fetchJson from '../../helpers/fetchJson';
+import Action from '../../helpers/classes/Action';
 
 function HomeView() {
-  const [message, setMessage] = useState('');
+  const message = useSelector((state) => state.home.data);
+  const error = useSelector((state) => state.home.error);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchJson()
-      .then((data) => setMessage(data.message))
-      .catch(console.log); // eslint-disable-line no-console
-  }, []);
+    dispatch(Action.fetchHomeData());
+  }, [dispatch]);
 
   return (
     <ViewContainer>
       <ViewTitle>Home</ViewTitle>
-      <p>{message}</p>
+      {message && <p>{message}</p>}
+      {error && <Alert variant="warning">{error}</Alert>}
     </ViewContainer>
   );
 }

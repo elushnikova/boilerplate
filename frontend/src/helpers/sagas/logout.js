@@ -12,9 +12,12 @@ function* logout() {
     yield put(Action.setProfileError(error));
   }
 
-  yield data.ok
-    ? put(Action.clearProfileData())
-    : put(Action.setProfileError(new Error(data.message)));
+  if (data.ok) {
+    yield put(Action.clearProfileData());
+    yield put(Action.clearHomeData());
+  } else {
+    yield put(Action.setProfileError(new Error(data.message)));
+  }
 }
 
 export default logout;

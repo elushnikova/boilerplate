@@ -29,6 +29,22 @@ class Action {
   static clearProfileError() {
     return createAction(ActionType.CLEAR_PROFILE_ERROR);
   }
+
+  static fetchHomeData() {
+    return createAction(ActionType.FETCH_HOME_DATA);
+  }
+
+  static setHomeData(payload) {
+    return createAction(ActionType.SET_HOME_DATA, payload);
+  }
+
+  static clearHomeData() {
+    return createAction(ActionType.CLEAR_HOME_DATA);
+  }
+
+  static setHomeError(payload) {
+    return createAction(ActionType.SET_HOME_ERROR, payload);
+  }
 }
 
 export default Action;

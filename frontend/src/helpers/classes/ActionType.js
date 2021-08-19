@@ -12,6 +12,14 @@ class ActionType {
   static SET_PROFILE_ERROR = 'SET_PROFILE_ERROR';
 
   static CLEAR_PROFILE_ERROR = 'CLEAR_PROFILE_ERROR';
+
+  static FETCH_HOME_DATA = 'FETCH_HOME_DATA'
+
+  static SET_HOME_DATA = 'SET_HOME_DATA';
+
+  static CLEAR_HOME_DATA = 'CLEAR_HOME_DATA';
+
+  static SET_HOME_ERROR = 'SET_HOME_ERROR'
 }
 
 export default ActionType;
