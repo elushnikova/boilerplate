@@ -1,5 +1,5 @@
-import ActionType from '../helpers/classes/ActionType';
-import loadState from '../helpers/localStorage/loadState';
+import ActionType from '../../helpers/classes/ActionType';
+import loadState from '../../helpers/localStorage/loadState';
 
 const initialState = {
   data: null,

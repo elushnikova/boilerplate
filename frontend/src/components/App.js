@@ -5,7 +5,7 @@ import RegisterView from './views/RegisterView';
 import LoginView from './views/LoginView';
 import LogoutView from './views/LogoutView';
 import Navigation from './Navigation';
-import store from '../helpers/store';
+import store from '../store';
 import ProtectedRoute from './routes/ProtectedRoute';
 import UnauthenticatedRoute from './routes/UnauthenticatedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';

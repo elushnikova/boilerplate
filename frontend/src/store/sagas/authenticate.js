@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
-import Action from '../helpers/classes/Action';
-import ActionType from '../helpers/classes/ActionType';
-import fetchJson from '../helpers/fetchJson';
+import Action from '../../helpers/classes/Action';
+import ActionType from '../../helpers/classes/ActionType';
+import fetchJson from '../../helpers/fetchJson';
 
 function* authenticate(action) {
   let data;
