@@ -11,16 +11,17 @@ const logout = require('./controllers/logout');
 const login = require('./controllers/login');
 const handleNotFound = require('./controllers/handleNotFound');
 const handleHome = require('./controllers/handleHome');
+const parseSessionSecrets = require('./helpers/parseSessionSecrets');
 
 const PORT = process.env.PORT || 4000;
-const SESSION_SECRET = process.env.SESSION_SECRET || 'foo';
+const SESSION_SECRETS = parseSessionSecrets();
 const SESSION_COOKIE = process.env.SESSION_COOKIE || 'user_sid';
 
 const app = express();
 const sessionConfig = {
   store: new FileStore(),
   name: SESSION_COOKIE,
-  secret: SESSION_SECRET,
+  secret: SESSION_SECRETS,
   resave: false,
   saveUninitialized: false,
 };
