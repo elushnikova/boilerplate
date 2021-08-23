@@ -17,6 +17,7 @@ function* authenticate(action) {
     });
   } catch (error) {
     yield put(Action.setProfileError(error));
+    return;
   }
 
   yield data.ok
