@@ -4,6 +4,10 @@ import ActionType from '../../helpers/classes/ActionType';
 import fetchJson from '../../helpers/fetchJson';
 import isAuthData from '../../helpers/isAuthData';
 
+/**
+ * Сага для аутентификации.
+ * @param {object} action объект действия с полями `type` и `payload`.
+ */
 function* authenticate(action) {
   if (!isAuthData(action.payload)) {
     const error = new Error('Must provide both email and password');
@@ -11,11 +15,13 @@ function* authenticate(action) {
     return;
   }
 
-  let data;
+  /** Путь для отправки сетевого запроса — для логина или регистрации. */
   const path = action.type === ActionType.LOGIN
     ? '/session'
     : '';
 
+  /** @type {AuthResultData} */
+  let data;
   try {
     data = yield call(fetchJson, path, {
       method: 'POST',

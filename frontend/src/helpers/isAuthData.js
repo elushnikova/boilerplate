@@ -1,3 +1,10 @@
+/**
+ * Проверка данных для аутентификации.
+ * @param {object} payload входящий объект с данными.
+ * @param {string} payload.email
+ * @param {string} payload.password
+ * @returns {boolean} соответствует ли `payload` требуемому формату и содержит ли данные.
+ */
 function isAuthData(payload) {
   const hasEmail = Object.prototype.hasOwnProperty.call(payload, 'email');
   const hasPassword = Object.prototype.hasOwnProperty.call(payload, 'password');
