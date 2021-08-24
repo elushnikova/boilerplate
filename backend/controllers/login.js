@@ -1,3 +1,4 @@
+const checkPasswordMatch = require('../helpers/checkPasswordMatch');
 const compareUser = require('../helpers/compareUser');
 const prepareLoginData = require('../helpers/prepareLoginData');
 const prepareUserProfile = require('../helpers/prepareUserProfile');
@@ -5,13 +6,7 @@ const prepareUserProfile = require('../helpers/prepareUserProfile');
 function login(req, res) {
   prepareLoginData(req.body.email, req.body.password)
     .then(compareUser)
-    .then(([user, isMatch]) => {
-      if (!isMatch) {
-        throw new Error('Invalid email or password');
-      }
-
-      return user;
-    })
+    .then(checkPasswordMatch)
     .then(prepareUserProfile)
     .then((profile) => {
       req.session.profile = profile;
