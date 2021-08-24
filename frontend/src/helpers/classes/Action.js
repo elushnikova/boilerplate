@@ -1,6 +1,10 @@
 import ActionType from './ActionType';
 import createAction from '../createAction';
 
+/**
+ * Набор функций, создающих действия определённого типа (action creators).
+ * @todo Заменить на простой объект — синтаксис класса слишком "раздутый".
+ */
 class Action {
   static register(payload) {
     return createAction(ActionType.REGISTER, payload);
