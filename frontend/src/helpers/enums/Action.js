@@ -4,52 +4,22 @@ import createAction from '../createAction';
 /**
  * Набор функций, создающих действия определённого типа (action creators).
  * @enum {Action}
- * @todo Заменить на простой объект — синтаксис класса слишком "раздутый".
  */
-class Action {
-  static register(payload) {
-    return createAction(ActionType.REGISTER, payload);
-  }
 
-  static login(payload) {
-    return createAction(ActionType.LOGIN, payload);
-  }
+const Action = {
+  register: (payload) => createAction(ActionType.REGISTER, payload),
+  login: (payload) => createAction(ActionType.LOGIN, payload),
+  logout: () => createAction(ActionType.LOGOUT),
 
-  static logout() {
-    return createAction(ActionType.LOGOUT);
-  }
+  setProfileData: (payload) => createAction(ActionType.SET_PROFILE_DATA, payload),
+  clearProfileData: () => createAction(ActionType.CLEAR_PROFILE_DATA),
+  setProfileError: (payload) => createAction(ActionType.SET_PROFILE_ERROR, payload),
+  clearProfileError: () => createAction(ActionType.CLEAR_PROFILE_ERROR),
 
-  static setProfileData(payload) {
-    return createAction(ActionType.SET_PROFILE_DATA, payload);
-  }
-
-  static clearProfileData() {
-    return createAction(ActionType.CLEAR_PROFILE_DATA);
-  }
-
-  static setProfileError(payload) {
-    return createAction(ActionType.SET_PROFILE_ERROR, payload);
-  }
-
-  static clearProfileError() {
-    return createAction(ActionType.CLEAR_PROFILE_ERROR);
-  }
-
-  static fetchHomeData() {
-    return createAction(ActionType.FETCH_HOME_DATA);
-  }
-
-  static setHomeData(payload) {
-    return createAction(ActionType.SET_HOME_DATA, payload);
-  }
-
-  static clearHomeData() {
-    return createAction(ActionType.CLEAR_HOME_DATA);
-  }
-
-  static setHomeError(payload) {
-    return createAction(ActionType.SET_HOME_ERROR, payload);
-  }
-}
+  fetchHomeData: () => createAction(ActionType.FETCH_HOME_DATA),
+  setHomeData: (payload) => createAction(ActionType.SET_HOME_DATA, payload),
+  clearHomeData: () => createAction(ActionType.CLEAR_HOME_DATA),
+  setHomeError: (payload) => createAction(ActionType.SET_HOME_ERROR, payload),
+};
 
 export default Action;
