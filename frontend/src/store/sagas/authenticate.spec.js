@@ -1,7 +1,7 @@
 import { expectSaga } from 'redux-saga-test-plan';
 import { call } from 'redux-saga-test-plan/matchers';
 import { throwError } from 'redux-saga-test-plan/providers';
-import Action from '../../helpers/classes/Action';
+import Action from '../../helpers/enums/Action';
 import fetchJson from '../../helpers/fetchJson';
 import authenticate from './authenticate';
 

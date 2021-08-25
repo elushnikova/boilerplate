@@ -1,6 +1,6 @@
 import { call, put } from 'redux-saga/effects';
-import Action from '../../helpers/classes/Action';
-import ActionType from '../../helpers/classes/ActionType';
+import Action from '../../helpers/enums/Action';
+import ActionType from '../../helpers/enums/ActionType';
 import fetchJson from '../../helpers/fetchJson';
 import isAuthData from '../../helpers/isAuthData';
 

@@ -3,6 +3,7 @@ import createAction from '../createAction';
 
 /**
  * Набор функций, создающих действия определённого типа (action creators).
+ * @enum {Action}
  * @todo Заменить на простой объект — синтаксис класса слишком "раздутый".
  */
 class Action {

@@ -23,4 +23,5 @@
  * Объект действия для reducer-функции.
  * @property {string} type Тип действия.
  * @property {any} payload Данные для записи в состояние.
+ * @todo Переименовать в ActionObject, чтобы не путать с enum Action?
  */
