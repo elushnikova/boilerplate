@@ -2,16 +2,11 @@ import ActionType from '../../helpers/classes/ActionType';
 import loadState from '../../helpers/localStorage/loadState';
 
 const initialState = {
-  data: null,
-  error: null,
-};
-
-const persistedState = {
   data: loadState('profile'),
   error: null,
 };
 
-function profileReducer(state = persistedState || initialState, action) {
+function profileReducer(state = initialState, action) {
   switch (action.type) {
     case ActionType.SET_PROFILE_DATA:
       return {
