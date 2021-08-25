@@ -2,20 +2,19 @@
  * Загрузить данные в JSON-формате из local storage.
  * @param {string} key Ключ, по которому хранится данный фрагмент состояния.
  * @returns {object|null}
- * @todo Переименовать функцию/переменные?
  */
-function loadState(key) {
-  const serializedState = localStorage.getItem(key);
+function loadData(key) {
+  const serializedData = localStorage.getItem(key);
 
-  if (serializedState === null) {
-    return serializedState;
+  if (serializedData === null) {
+    return serializedData;
   }
 
   try {
-    return JSON.parse(serializedState);
+    return JSON.parse(serializedData);
   } catch (error) {
     return null;
   }
 }
 
-export default loadState;
+export default loadData;

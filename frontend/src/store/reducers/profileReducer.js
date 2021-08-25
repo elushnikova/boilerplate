@@ -1,8 +1,8 @@
 import ActionType from '../../helpers/classes/ActionType';
-import loadState from '../../helpers/localStorage/loadState';
+import loadData from '../../helpers/localStorage/loadData';
 
 const initialState = {
-  data: loadState('profile'),
+  data: loadData('profile'),
   error: null,
 };
 
