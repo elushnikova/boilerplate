@@ -1,19 +1,30 @@
 /**
- * Загрузить данные в JSON-формате из local storage.
- * @param {string} key Ключ, по которому хранится данный фрагмент состояния.
- * @returns {object|null}
+ * Загрузить и прочесть данные из local storage в JSON-формате.
+ * @param {string} key Ключ, по которому хранятся данные.
+ * @returns {*}
  */
 function loadData(key) {
   const serializedData = localStorage.getItem(key);
 
-  if (serializedData === null) {
-    return serializedData;
-  }
+  switch (serializedData) {
+    case null:
+      return null;
 
-  try {
-    return JSON.parse(serializedData);
-  } catch (error) {
-    return null;
+    case 'null':
+      return null;
+
+    case 'true':
+      return true;
+
+    case 'false':
+      return false;
+
+    default:
+      try {
+        return JSON.parse(serializedData);
+      } catch (error) {
+        throw new Error('Invalid JSON data in local storage');
+      }
   }
 }
 
