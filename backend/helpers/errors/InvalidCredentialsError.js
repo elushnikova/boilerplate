@@ -1,4 +1,4 @@
-const AppError = require('./enums/AppError');
+const AppError = require('../enums/AppError');
 
 /**
  * Ошибка попытки логина.

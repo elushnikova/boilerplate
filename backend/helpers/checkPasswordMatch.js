@@ -1,4 +1,4 @@
-const InvalidCredentialsError = require('./InvalidCredentialsError');
+const InvalidCredentialsError = require('./errors/InvalidCredentialsError');
 
 /**
  * Выбросить ошибку, если предоставленный пароль несовпадает с паролем пользователя.
