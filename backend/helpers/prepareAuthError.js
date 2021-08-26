@@ -4,7 +4,7 @@ const AppError = require('./enums/AppError');
  * Подготовить тело и статус ответа, сообщающего об ошибке при авторизации
  * @param {*} error Пойманное исключение.
  * @returns {AuthResponseData}
- * @todo Вынести создание объектов {AuthResultData} в отдельную функцию?
+ * @todo Вынести создание объектов {AuthResult} в отдельную функцию?
  */
 function prepareAuthError(error) {
   switch (error.name) {

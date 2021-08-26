@@ -20,7 +20,7 @@ function* authenticate(action) {
     ? '/session'
     : '';
 
-  /** @type {AuthResultData} */
+  /** @type {AuthResult} */
   let data;
   try {
     data = yield call(fetchJson, path, {

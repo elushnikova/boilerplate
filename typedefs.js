@@ -1,5 +1,5 @@
 /**
- * @global @typedef AuthResultData
+ * @global @typedef AuthResult
  * Тело ответа на запрос аутентификации.
  * @type {object}
  * @property {boolean} ok Успешно ли прошёл запрос аутентификации.
@@ -13,7 +13,7 @@
 /**
  * @typedef AuthResponseData
  * Кортеж с телом и статусом ответа на запрос аутентификации.
- * @type {[AuthResultData, number|undefined]}
+ * @type {[AuthResult, number|undefined]}
  */
 
 /**
