@@ -2,9 +2,10 @@ const bcrypt = require('bcrypt');
 const UserNotFoundError = require('./errors/UserNotFoundError');
 
 /**
- * @param {[object | null, string]} data Кортеж из объекта пользователя и пароля для проверки.
- * @returns {Promise<[object, boolean]>} `Promise<[user, isMatch]>`
- * @throws `Error` if user is null
+ * Начать сравнение входящего пароля с хэшированным паролем пользователя.
+ * @param {[object|null, string]} data Кортеж с пользователем и входящим паролем.
+ * @returns {Promise<[object, boolean]>} Промис с кортежем из пользователя и совпадения паролей.
+ * @throws Выбросить ошибку, если нет пользователя.
  */
 function compareUser([user, rawPassword]) {
   if (!user) {

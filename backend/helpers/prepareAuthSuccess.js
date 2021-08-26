@@ -1,9 +1,9 @@
 const prepareAuthResult = require('./prepareAuthResult');
 
 /**
- * Подготовить тело и статус ответа, сообщающего об успешной авторизации
- * @param {Profile} profile
- * @returns {AuthResponseData}
+ * Подготовить тело и статус ответа, сообщающего об успешной авторизации.
+ * @param {Profile} profile Объект профиля для хранения на клиенте.
+ * @returns {AuthResponseData} Данные ответа на запрос аутентификации.
  */
 function prepareAuthSuccess(profile) {
   return [

@@ -1,10 +1,10 @@
 const InvalidCredentialsError = require('./errors/InvalidCredentialsError');
 
 /**
- * Выбросить ошибку, если предоставленный пароль несовпадает с паролем пользователя.
- * @param {[object, boolean]}
- * @throws {InvalidCredentialsError}
- * @returns {object} Вернуть объект пользователя для последующей работы с ним.
+ * Выбросить ошибку, если входящий пароль не совпадает с паролем пользователя.
+ * @param {[object, boolean]} data Кортеж с пользователем и флагом совпадения паролей.
+ * @throws Выбросить ошибку, если пароли не совпадают.
+ * @returns {object} Вернуть объект пользователя.
  */
 function checkPasswordMatch([user, isMatch]) {
   if (!isMatch) {

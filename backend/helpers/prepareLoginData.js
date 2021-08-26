@@ -1,9 +1,10 @@
 const { User } = require('../models');
 
 /**
- * @param {string} email
- * @param {string} rawPassword
- * @returns {Promise<[object, string]>} Promise resolving with tuple of `[user, rawPassword]`
+ * Начать поиск пользователя по email для логина.
+ * @param {string} email Входящий email.
+ * @param {string} rawPassword Входящий пароль.
+ * @returns {Promise<[object, string]>} Промис с кортежем из пользователя и входящего пароля.
  */
 function prepareLoginData(email, rawPassword) {
   return Promise.all([
