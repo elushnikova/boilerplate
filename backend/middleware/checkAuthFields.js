@@ -1,17 +1,24 @@
+const initAuthResponder = require('../helpers/initAuthResponder');
+const prepareAuthResult = require('../helpers/prepareAuthResult');
+
+/** Промежуточная функция для проверки наличия email и пароля в теле запроса. */
 function checkAuthFields(req, res, next) {
   const { email, password } = req.body;
+  const sendAuthResponse = initAuthResponder(res);
 
   if (!email) {
-    res
-      .status(409)
-      .json({ message: 'Email must be non-empty', email });
+    sendAuthResponse([
+      prepareAuthResult(new Error('Email must be non-empty')),
+      409,
+    ]);
     return;
   }
 
   if (!password) {
-    res
-      .status(409)
-      .json({ message: 'Password must be non-empty', password });
+    sendAuthResponse([
+      prepareAuthResult(new Error('Password must be non-empty')),
+      409,
+    ]);
     return;
   }
 
