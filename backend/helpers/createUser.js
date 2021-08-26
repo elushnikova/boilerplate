@@ -1,8 +1,9 @@
 const { User } = require('../models');
 
 /**
- * @param {[string, string]} userData tuple of `[email, password]`
- * @returns {Promise<object>} Promise resolving with `user` object from DB
+ * Начать создание пользователя в БД.
+ * @param {[string, string]} userData Кортеж из email и пароля.
+ * @returns {Promise<object>} Промис с объектом пользователя из БД.
  */
 function createUser([email, password]) {
   return User.create({ email, password, isAdmin: false });
