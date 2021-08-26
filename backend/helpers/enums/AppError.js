@@ -8,6 +8,9 @@ const AppError = {
 
   /** Сценарий попытки войти в учётную запись с несовпадающим паролем. */
   InvalidCredentials: 'InvalidCredentialsError',
+
+  /** Сценарий попытки войти в несуществующую учётную запись. */
+  UserNotFound: 'UserNotFoundError',
 };
 
 module.exports = AppError;
