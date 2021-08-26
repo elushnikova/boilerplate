@@ -1,13 +1,14 @@
 const bcrypt = require('bcrypt');
+const UserNotFoundError = require('./errors/UserNotFoundError');
 
 /**
- * @param {[object | null, string]} data tuple of `[user, rawPassword]`
- * @returns {Promise<[object, boolean]>} Promise resolving with tuple of `[user, isMatch]`
+ * @param {[object | null, string]} data Кортеж из объекта пользователя и пароля для проверки.
+ * @returns {Promise<[object, boolean]>} `Promise<[user, isMatch]>`
  * @throws `Error` if user is null
  */
 function compareUser([user, rawPassword]) {
   if (!user) {
-    throw new Error('User not found');
+    throw new UserNotFoundError();
   }
 
   return Promise.all([

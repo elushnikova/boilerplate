@@ -20,6 +20,12 @@ function prepareAuthError(error) {
         401,
       ];
 
+    case AppError.UserNotFound:
+      return [
+        prepareAuthResult(new AppError.InvalidCredentials()),
+        401,
+      ];
+
     default:
       return [
         prepareAuthResult(error),
