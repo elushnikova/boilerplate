@@ -14,14 +14,13 @@ const handleHome = require('./controllers/handleHome');
 const parseSessionSecrets = require('./helpers/parseSessionSecrets');
 
 const PORT = process.env.PORT || 4000;
-const SESSION_SECRETS = parseSessionSecrets();
 const SESSION_COOKIE = process.env.SESSION_COOKIE || 'user_sid';
 
 const app = express();
 const sessionConfig = {
   store: new FileStore(),
   name: SESSION_COOKIE,
-  secret: SESSION_SECRETS,
+  secret: parseSessionSecrets(),
   resave: false,
   saveUninitialized: false,
 };

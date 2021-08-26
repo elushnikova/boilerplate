@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
-import Action from '../helpers/classes/Action';
+import Action from '../helpers/enums/Action';
 
 function AuthForm({ isRegister = false, children }) {
   const dispatch = useDispatch();

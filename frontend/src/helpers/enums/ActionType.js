@@ -1,0 +1,21 @@
+/**
+ * Набор типов действий для reducer-функции.
+ * @enum {string}
+ */
+const ActionType = {
+  REGISTER: 'REGISTER',
+  LOGIN: 'LOGIN',
+  LOGOUT: 'LOGOUT',
+
+  SET_PROFILE_DATA: 'SET_PROFILE_DATA',
+  CLEAR_PROFILE_DATA: 'CLEAR_PROFILE_DATA',
+  SET_PROFILE_ERROR: 'SET_PROFILE_ERROR',
+  CLEAR_PROFILE_ERROR: 'CLEAR_PROFILE_ERROR',
+
+  FETCH_HOME_DATA: 'FETCH_HOME_DATA',
+  SET_HOME_DATA: 'SET_HOME_DATA',
+  CLEAR_HOME_DATA: 'CLEAR_HOME_DATA',
+  SET_HOME_ERROR: 'SET_HOME_ERROR',
+};
+
+export default ActionType;

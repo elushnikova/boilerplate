@@ -1,5 +1,9 @@
 const SESSION_COOKIE = process.env.SESSION_COOKIE || 'user_sid';
 
+/**
+ * Контроллер выхода.
+ * Удаляет сессию, затем очищает куку с её идентификатором.
+ */
 function logout(req, res) {
   req.session.destroy((error) => {
     if (error) {

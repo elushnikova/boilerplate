@@ -1,4 +1,4 @@
-import ActionType from '../../helpers/classes/ActionType';
+import ActionType from '../../helpers/enums/ActionType';
 
 const initialState = {
   data: null,

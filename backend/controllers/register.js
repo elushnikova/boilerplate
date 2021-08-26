@@ -1,31 +1,26 @@
 const prepareUserData = require('../helpers/prepareUserData');
 const createUser = require('../helpers/createUser');
 const prepareUserProfile = require('../helpers/prepareUserProfile');
+const prepareAuthSuccess = require('../helpers/prepareAuthSuccess');
+const prepareAuthError = require('../helpers/prepareAuthError');
+const initSessionCreator = require('../helpers/initSessionCreator');
+const initAuthResponder = require('../helpers/initAuthResponder');
 
+/**
+ * Контроллер регистрации.
+ * Создаёт пользователя в БД и сессию. Отправляет профиль пользователя на клиент.
+ */
 function register(req, res) {
+  const createSession = initSessionCreator(req);
+  const sendRegisterResponse = initAuthResponder(res, 201);
+
   prepareUserData(req.body.email, req.body.password)
     .then(createUser)
     .then(prepareUserProfile)
-    .then((profile) => {
-      req.session.profile = profile;
-
-      return res
-        .status(201)
-        .json({ ok: true, profile });
-    })
-    .catch((error) => {
-      switch (error.name) {
-        case 'SequelizeUniqueConstraintError':
-          return res
-            .status(409)
-            .json({ ok: false, message: 'Email already registered', email: error.fields.email });
-
-        default:
-          return res
-            .status(500)
-            .json(error);
-      }
-    });
+    .then(prepareAuthSuccess)
+    .catch(prepareAuthError)
+    .then(createSession)
+    .then(sendRegisterResponse);
 }
 
 module.exports = register;

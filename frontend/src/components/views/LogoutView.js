@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ViewContainer from '../presentational/ViewContainer';
 import ViewTitle from '../presentational/ViewTitle';
-import Action from '../../helpers/classes/Action';
+import Action from '../../helpers/enums/Action';
 
 function LogoutView() {
   const dispatch = useDispatch();

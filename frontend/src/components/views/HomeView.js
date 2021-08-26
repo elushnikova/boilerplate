@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Alert from 'react-bootstrap/Alert';
 import ViewContainer from '../presentational/ViewContainer';
 import ViewTitle from '../presentational/ViewTitle';
-import Action from '../../helpers/classes/Action';
+import Action from '../../helpers/enums/Action';
 
 function HomeView() {
   const message = useSelector((state) => state.home.data);

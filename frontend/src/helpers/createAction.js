@@ -1,3 +1,9 @@
+/**
+ * Вспомогательная функция для создания объекта действия.
+ * @param {string} type
+ * @param {*} payload
+ * @returns
+ */
 function createAction(type, payload) {
   if (!type) {
     throw new Error('Must provide action type');
