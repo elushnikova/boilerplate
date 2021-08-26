@@ -7,7 +7,10 @@ const prepareAuthSuccess = require('../helpers/prepareAuthSuccess');
 const prepareLoginData = require('../helpers/prepareLoginData');
 const prepareUserProfile = require('../helpers/prepareUserProfile');
 
-/** Контроллер для логина. */
+/**
+ * Контроллер логина.
+ * Создаёт сессию при успешном входе. Отправляет профиль пользователя на клиент.
+ */
 function login(req, res) {
   const createSession = initSessionCreator(req);
   const sendLoginResponse = initAuthResponder(res);
