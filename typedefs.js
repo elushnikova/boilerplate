@@ -11,6 +11,12 @@
  */
 
 /**
+ * @typedef AuthResponseData
+ * Кортеж с телом и статусом ответа на запрос аутентификации.
+ * @type {[AuthResultData, number|undefined]}
+ */
+
+/**
  * @global @typedef Profile
  * Данные пользователя для хранения на клиенте с минимумом необходимой информации.
  * @property {number} id
