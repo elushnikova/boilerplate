@@ -9,10 +9,10 @@ function initAuthResponder(res, defaultStatus = 200) {
    * Отправить ответ на запрос аутентификации.
    * @param {AuthResponseData} authResponseData
    */
-  function sendAuthResponse([authResultData, status]) {
+  function sendAuthResponse([authResult, status]) {
     res
       .status(status ?? defaultStatus)
-      .json(authResultData);
+      .json(authResult);
   }
 
   return sendAuthResponse;

@@ -10,10 +10,10 @@ function initSessionCreator(req) {
    * @returns {AuthResponseData}
    */
   function createSession(authResponseData) {
-    const [authResultData] = authResponseData;
+    const [authResult] = authResponseData;
 
-    if (authResultData.ok) {
-      req.session.profile = authResultData.profile;
+    if (authResult.ok) {
+      req.session.profile = authResult.profile;
     }
 
     return authResponseData;
