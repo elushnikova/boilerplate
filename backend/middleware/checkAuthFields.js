@@ -9,7 +9,7 @@ function checkAuthFields(req, res, next) {
   if (!email) {
     sendAuthResponse([
       prepareAuthResult(new Error('Email must be non-empty')),
-      409,
+      400,
     ]);
     return;
   }
@@ -17,7 +17,7 @@ function checkAuthFields(req, res, next) {
   if (!password) {
     sendAuthResponse([
       prepareAuthResult(new Error('Password must be non-empty')),
-      409,
+      400,
     ]);
     return;
   }
