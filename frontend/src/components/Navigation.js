@@ -16,6 +16,14 @@ function Navigation() {
           </LinkContainer>
 
           {
+            profile?.isAdmin && (
+              <LinkContainer to="/admin">
+                <Nav.Link>Admin</Nav.Link>
+              </LinkContainer>
+            )
+          }
+
+          {
             profile
               ? (
                 <LinkContainer to="/logout" className="ms-auto">

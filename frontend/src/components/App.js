@@ -7,6 +7,7 @@ import LoginView from './views/LoginView';
 import LogoutView from './views/LogoutView';
 import Navigation from './Navigation';
 import store from '../store';
+import AdminRoute from './routes/AdminRoute';
 import ProtectedRoute from './routes/ProtectedRoute';
 import UnauthenticatedRoute from './routes/UnauthenticatedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,9 +30,9 @@ function App() {
               <LogoutView />
             </ProtectedRoute>
 
-            <ProtectedRoute path="/admin">
+            <AdminRoute path="/admin">
               <AdminView />
-            </ProtectedRoute>
+            </AdminRoute>
 
             <ProtectedRoute path="/">
               <HomeView />
