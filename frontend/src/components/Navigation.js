@@ -15,24 +15,33 @@ function Navigation() {
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
 
-        {profile
-          ? (
-            <LinkContainer to="/logout" className="ms-auto">
-              <Nav.Link>Logout</Nav.Link>
-            </LinkContainer>
-          )
-          : (
-            <>
-              <LinkContainer to="/login" className="ms-auto">
-                <Nav.Link>Login</Nav.Link>
+          {
+            profile?.isAdmin && (
+              <LinkContainer to="/admin">
+                <Nav.Link>Admin</Nav.Link>
               </LinkContainer>
+            )
+          }
 
-              <LinkContainer to="/register">
-                <Nav.Link>Register</Nav.Link>
-              </LinkContainer>
-            </>
-          )
-        }
+          {
+            profile
+              ? (
+                <LinkContainer to="/logout" className="ms-auto">
+                  <Nav.Link>Logout</Nav.Link>
+                </LinkContainer>
+              )
+              : (
+                <>
+                  <LinkContainer to="/login" className="ms-auto">
+                    <Nav.Link>Login</Nav.Link>
+                  </LinkContainer>
+
+                  <LinkContainer to="/register">
+                    <Nav.Link>Register</Nav.Link>
+                  </LinkContainer>
+                </>
+              )
+          }
         </Nav>
       </Container>
     </Navbar>

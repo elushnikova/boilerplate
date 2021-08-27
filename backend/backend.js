@@ -12,6 +12,8 @@ const login = require('./controllers/login');
 const handleNotFound = require('./controllers/handleNotFound');
 const handleHome = require('./controllers/handleHome');
 const parseSessionSecrets = require('./helpers/parseSessionSecrets');
+const showAdminPanel = require('./controllers/showAdminPanel');
+const checkIfAdmin = require('./middleware/checkIfAdmin');
 
 const PORT = process.env.PORT || 4000;
 const SESSION_COOKIE = process.env.SESSION_COOKIE || 'user_sid';
@@ -41,6 +43,9 @@ app.route('/api')
 app.route('/api/session')
   .post(checkAuthFields, login)
   .delete(logout);
+
+app.route('/api/admin')
+  .get(checkIfAdmin, showAdminPanel);
 
 app.route('*')
   .get(handleNotFound);

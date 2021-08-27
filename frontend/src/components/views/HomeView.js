@@ -5,6 +5,7 @@ import ViewContainer from '../presentational/ViewContainer';
 import ViewTitle from '../presentational/ViewTitle';
 import Action from '../../helpers/enums/Action';
 
+/** @todo Убрать данные по странице из централизованного состояния? */
 function HomeView() {
   const message = useSelector((state) => state.home.data);
   const error = useSelector((state) => state.home.error);
