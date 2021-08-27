@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import AdminView from './views/AdminView';
 import HomeView from './views/HomeView';
 import RegisterView from './views/RegisterView';
 import LoginView from './views/LoginView';
@@ -26,6 +27,10 @@ function App() {
 
             <ProtectedRoute path="/logout">
               <LogoutView />
+            </ProtectedRoute>
+
+            <ProtectedRoute path="/admin">
+              <AdminView />
             </ProtectedRoute>
 
             <ProtectedRoute path="/">
